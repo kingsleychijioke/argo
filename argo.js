@@ -125,5 +125,60 @@ window.addEventListener("scroll", () => {
   }, 5000);
 });
 
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+
+
+// OPEN MENU
+hamburger.addEventListener("click", (e) => {
+  e.stopPropagation();
+
+  navLinks.classList.add("active");
+  hamburger.classList.add("hide");
+});
+
+
+// CLOSE WHEN CLICK OUTSIDE
+document.addEventListener("click", (e) => {
+
+  if (
+    !navLinks.contains(e.target) &&
+    !hamburger.contains(e.target)
+  ) {
+
+    navLinks.classList.remove("active");
+    hamburger.classList.remove("hide");
+
+  }
+
+});
+
+
+// CLOSE WHEN SCROLL
+window.addEventListener("scroll", () => {
+
+  if(navLinks.classList.contains("active")){
+
+    navLinks.classList.remove("active");
+    hamburger.classList.remove("hide");
+
+  }
+
+});
+
+
+// CLOSE AFTER CLICKING LINK
+const navItems = document.querySelectorAll(".nav-links a");
+
+navItems.forEach((item)=>{
+
+  item.addEventListener("click",()=>{
+
+    navLinks.classList.remove("active");
+    hamburger.classList.remove("hide");
+
+  });
+
+});
 const year = document.getElementById("year");
 year.textContent = new Date().getFullYear();
